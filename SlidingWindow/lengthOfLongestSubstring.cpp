@@ -25,3 +25,28 @@ public:
         return ans;
     }
 };
+
+
+class Solution_j {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int right = 0;
+        int left = 0;
+        int ans = 0;
+        unordered_map<char, int> window;
+        while (right < s.size())
+        {
+            char c = s[right];
+            window[c]++;
+            while (window[c] > 1)
+            {
+                char d = s[left];
+                window[d]--;
+                left++;
+            }
+            ans = max(ans, right - left + 1 );
+            right++;
+        }
+        return ans;
+    }
+};
