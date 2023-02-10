@@ -2,20 +2,6 @@
 #include <ListNode.h>
 using namespace std;
 
-class Solution {
-public:
-    vector<int> corpFlightBookings(vector<vector<int>>& bookings, int n) {
-        vector<int> nums;
-        nums.resize(n);
-        Difference df(nums);
-        for (auto book : bookings) {
-            
-        }
-
-
-    }
-};
-
 // 差分数组工具类
 class Difference {
 public:
@@ -44,3 +30,25 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    vector<int> corpFlightBookings(vector<vector<int>>& bookings, int n) {
+        vector<int> nums;
+        nums.resize(n);
+        Difference df(nums);
+        for (auto book : bookings) {
+            df.increment(book[0] - 1, book[1] - 1, book[2]);
+        }
+        return df.result();
+    }
+};
+
+
+int main() {
+    Solution s;
+    vector<vector<int>> bookings = {{1,2,10},{2,3,20},{2,5,25}};
+    int n = 5;
+    s.corpFlightBookings(bookings, 5);
+}
+
